@@ -39,6 +39,7 @@ var jsdis = {
 	    	this.set(key,value);
 	    	return oldVal;
 	    },
+	    //delete by key given
 	    del: function(key) {
 			if (!this.isSupported) return;
 
