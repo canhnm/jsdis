@@ -1,9 +1,9 @@
 var jsdis = {
-	//check if localStorage is supported in the browser
+	//Check if localStorage is supported in the browser
 	isSupported: function(){
 		return ('localStorage' in window) && window.localStorage !== null;
 	},
-	//check if JSON is supported in the browser
+	//Check if JSON is supported in the browser
 	isJSON: function(){
 		return window.JSON != null;
 	},
@@ -15,7 +15,7 @@ var jsdis = {
 		
 		try {
 			if (typeof value == "object") {
-				//we use JSON.stringify because localStored only stores data in string
+				//We use JSON.stringify because localStored only stores data in string
 				value = JSON.stringify(value);
 			}
 			localStorage.setItem(key, value);
@@ -29,7 +29,7 @@ var jsdis = {
 
 		var value = localStorage.getItem(key),
 			valLengh = value.length;
-		//we use JSON.parse to return value that stringified
+		//We use JSON.parse to return stringified value 
 		if (value[0] == "{" && value[valLength] == "}") {
 			value = JSON.parse(value);
 		}
@@ -41,17 +41,17 @@ var jsdis = {
 		this.set(key,value);
 		return oldVal;
 	},
-	//delete by key given
+	//Delete by key given
 	del: function(key) {
 		if (!this.isSupported) return;
 
 		return localStorage.removeItem("name");
 	},
-	// Increment the integer value of a key by one 
+	//Increment the integer value of a key by one 
 	incr: function(key){
 		var curVal = this.get(key);
 		if(curVal){
-			//check if value of this key is integer
+			//Check if value of this key is integer
 			if(isNaN(parseInt(curVal,10))===false){
 				var newVal = parseInt(curVal)+1;
 				return this.set(key, newVal);
@@ -62,11 +62,11 @@ var jsdis = {
 			return 'No value found!';
 		}
 	},
-	// Increment the integer value of a key by given number value 
+	//Increment the integer value of a key by given number value 
 	incrby: function(key, increment){
 		var curVal = this.get(key);
 		if(curVal){
-			//check if value of this key is integer
+			//Check if value of this key is integer
 			if(isNaN(parseInt(curVal,10))===false){
 				var newVal = parseInt(curVal)+increment;
 				return this.set(key, newVal);
@@ -77,7 +77,7 @@ var jsdis = {
 			return 'No value found!';
 		}
 	},
-	//decrement the integer value of key by one
+	//Dcrement the integer value of key by one
 	decr: function(key){
 		var curVal = this.get(key);
 		if(curVal){
@@ -92,11 +92,11 @@ var jsdis = {
 			return 'No value found!';
 		}
 	},
-	//decrement the integer value of this key by the given number value
+	//Decrement the integer value of this key by the given number value
 	decrby: function(key, decrement){
 		var curVal = this.get(key);
 		if(curVal){
-			//check if value of this key is integer
+			//Check if value of this key is integer
 			if(isNaN(parseInt(val,10))===false){
 				var newVal = curVal-decrement;
 				this.set(key, newVal);
@@ -116,7 +116,7 @@ var jsdis = {
 		var curVal = this.get(key);
 		return strlen(curVal);
 	},
-	//clear current stored value
+	//Clear current stored value
 	flush: function(){
 		if (!this.isSupported) return;
 
