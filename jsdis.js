@@ -7,9 +7,6 @@ var jsdis = {
 	isJSON: function(){
 		return window.JSON != null;
 	},
-	driver: function(){
-		
-	},
 	exists: function(key){
 		return this.storage.getItem( key ) != null;
 	},
