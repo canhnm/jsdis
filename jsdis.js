@@ -1,17 +1,30 @@
 var jsdis = {
+		config: function(params){
+			//assign default driver
+			if( params.driver == '' || (params.driver!='localStorage' && params.driver!='sessionStorage') ){
+				params.driver = 'localStorage';
+			}
+			this.config = {
+				'driver': params.driver
+			};
+		},
 		//check if localStorage is supported in the browser
-		isSupported: function(){			
+		isSupported: function(){
 		    return ('localStorage' in window) && window.localStorage !== null;
 		},
 	  	//check if JSON is supported in the browser
 	  	isJSON: function(){
 			return window.JSON != null;
 		},
+		driver: function(){
+			
+		},
 		exists: function(key){
 			return this.storage.getItem( key ) != null;
 		},
 		set: function(key, value) {
 			if (!this.isSupported) return;
+			
 			try {
 		        if (typeof value == "object") {
 		        	//we use JSON.stringify because localStored only stores data in string
@@ -26,9 +39,10 @@ var jsdis = {
 	    get: function(key) {
 			if (!this.isSupported) return;
 
-	        var value = localStorage.getItem(key);
+	        var value = localStorage.getItem(key),
+	        	valLengh = value.length;
         	//we use JSON.parse to return value that stringified
-	        if (value[0] == "{") {
+	        if (value[0] == "{" && value[valLength] == "}") {
 	            value = JSON.parse(value);
 	        }
 	        return value;
@@ -60,7 +74,7 @@ var jsdis = {
     			return 'No value found!';
     		}
 	    },
-	    // Increment the integer value of a key by one 
+	    // Increment the integer value of a key by given number value 
 	    incrby: function(key, increment){
     		var curVal = this.get(key);
     		if(curVal){
