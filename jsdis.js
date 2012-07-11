@@ -128,4 +128,4 @@ var jsdis = {
 		}    
 		return true;	
 	}
-}
+};
