@@ -19,3 +19,8 @@ So, I need a persistence data storage.
 - The size of localStorage is limited by each browser, 
 	if you want to control your own space let see Manifest!
 --=========================================================================--
+
+--==========================================================================--
+GNU LICENSE
+--==========================================================================--
+http://www.gnu.org/software/
