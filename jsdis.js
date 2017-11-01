@@ -1,3 +1,4 @@
+#update test
 var jsdis = {
 	//Check if localStorage is supported in the browser
 	isSupported: function(){
